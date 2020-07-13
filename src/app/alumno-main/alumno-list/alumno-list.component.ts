@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Alumno } from '../model/alumno';
-import { AlumnoService } from '../model/alumno.service';
+import { Alumno } from '../../models/alumno';
+import { AlumnoService } from '../../services/alumno.service';
 import { faListAlt, faEye, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import swal from 'sweetalert2';
 
@@ -36,25 +36,15 @@ export class AlumnoListComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-
         this.alumnoService.delete(a).subscribe(
-          result => {
-            if(result !== undefined){
-              if(result.console !== undefined){
-                console.log(result.console);
-              }
-              swal.fire(result);
-            }
-          }          
-        )       
+          result => console.log(result)
+        )
       }
     })
-
   }
 
   list() : void {
-    this.alumnoService.list().subscribe(result => {
-      console.log(result);
+    this.alumnoService.list().subscribe(result => {      
       this.alumnos = result;
     });
   }
