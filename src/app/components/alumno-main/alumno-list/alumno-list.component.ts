@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Alumno } from '../../models/alumno';
-import { AlumnoService } from '../../services/alumno.service';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { faListAlt, faEye, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import swal from 'sweetalert2';
+import { Alumno } from 'src/app/models/alumno';
+import { AlumnoService } from 'src/app/services/alumno.service';
 
 @Component({
   selector: 'app-alumno-list',
@@ -17,11 +17,28 @@ export class AlumnoListComponent implements OnInit {
   faTrash = faTrash;
 
   alumnos : Alumno[];
+  @Output() alumnoToEdit = new EventEmitter<Alumno>();
+  @Input() flagToReload;
+  @Output() reloadComplete = new EventEmitter<Boolean>();
 
   constructor(private alumnoService:AlumnoService) { }
 
   ngOnInit(): void {
     this.list();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.flagToReload.currentValue){
+      if(this.flagToReload){
+        this.list();
+      }
+    }
+  }
+
+
+  update(a:Alumno) :void {
+    console.log(a);
+    this.alumnoToEdit.emit(a);
   }
 
   delete(a:Alumno) :void {
@@ -43,9 +60,12 @@ export class AlumnoListComponent implements OnInit {
     })
   }
 
+
+
   list() : void {
     this.alumnoService.list().subscribe(result => {      
       this.alumnos = result;
+      this.reloadComplete.emit(true);
     });
   }
 

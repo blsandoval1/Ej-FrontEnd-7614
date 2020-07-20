@@ -27,6 +27,14 @@ export class ServiceInterceptor implements HttpInterceptor {
             icon : "success"
           });
         }        
+        if(next.status === 200)
+        { 
+          Swal.fire({
+            title : "¡Correcto!",
+            text : next.body,
+            icon : "success"
+          });
+        }
       }
     }, error => {
       console.error(error);
@@ -35,6 +43,14 @@ export class ServiceInterceptor implements HttpInterceptor {
           Swal.fire({
             title : "Error",
             text :error.error.Message,
+            icon : "error"
+          });
+        }     
+        if(error.status === 0)
+        {          
+          Swal.fire({
+            title : "Error",
+            text :error.message,
             icon : "error"
           });
         }     

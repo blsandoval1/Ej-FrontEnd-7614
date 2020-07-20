@@ -5,5 +5,5 @@ export class Alumno {
     cedula: string;
     fecha_nacimiento:string;
     lugar_nacimiento: string;
-    sexo:string;    
+    sexo:string = "M";    
 }

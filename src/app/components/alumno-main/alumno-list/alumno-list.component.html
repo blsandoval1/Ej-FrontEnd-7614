@@ -8,6 +8,9 @@
     <thead class="bg-info">
         <tr>
             <th>
+                N°
+            </th>
+            <th>
                 Nombres
             </th>
             <th>
@@ -20,7 +23,10 @@
         </tr>
     </thead>
     <tbody>        
-            <tr *ngFor="let item of alumnos">
+            <tr *ngFor="let item of alumnos; let i = index">
+                <td>
+                    {{i | masmas}}
+                </td>
                 <td>
                     {{item.nombres}}
                 </td>
@@ -31,8 +37,8 @@
                     {{item.cedula}}
                 </td>                
                 <td class="btn-group">
-                    <button class="btn btn-sm btn-info" ><fa-icon [icon]="faEye"></fa-icon></button>                    
-                    <button class="btn btn-sm btn-warning" ><fa-icon [icon]="faPencilAlt"></fa-icon></button>
+                    <button [routerLink]="['/alumnos', item.idalumno]" class="btn btn-sm btn-info" ><fa-icon [icon]="faEye"></fa-icon></button>                    
+                    <button (click)="update(item)" class="btn btn-sm btn-warning" ><fa-icon [icon]="faPencilAlt"></fa-icon></button>
                     <button (click)="delete(item)" class="btn btn-sm btn-danger" ><fa-icon [icon]="faTrash"></fa-icon></button>
                 </td>
             </tr>
