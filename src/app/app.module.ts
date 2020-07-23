@@ -18,6 +18,7 @@ import { AlumnoFormComponent } from './components/alumno-main/alumno-form/alumno
 import { AlumnoCardComponent } from './components/alumno-card/alumno-card.component';
 import { MasmasPipe } from './shared/pipes/masmas.pipe';
 import { SexdescPipe } from './shared/pipes/sexdesc.pipe';
+import { MateriaFormComponent } from './components/materia-form/materia-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SexdescPipe } from './shared/pipes/sexdesc.pipe';
     AlumnoFormComponent,
     AlumnoCardComponent,
     MasmasPipe,
-    SexdescPipe    
+    SexdescPipe,
+    MateriaFormComponent    
   ],
   imports: [
     BrowserModule,
