@@ -1,5 +1,5 @@
 export class Materia {
-    idmateria:number;
+    idmateria:number;    
     nombre:string;
     nrc:string;
     creditos:number; 
